@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class TemplateSubsystem extends SubsystemBase {
-  private SparkMax motor = new SparkMax(0, MotorType.kBrushless);
+  private SparkMax motor;
   private PIDController pidController;
 
   public TemplateSubsystem() {
