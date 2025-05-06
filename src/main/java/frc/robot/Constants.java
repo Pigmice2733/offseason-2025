@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import com.pathplanner.lib.config.PIDConstants;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -19,8 +21,16 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-  public static class OperatorConstants {
-    public static final int kDriverControllerPort = 0;
+  public static final double AXIS_THRESHOLD = 0.1;
+
+  public static class DrivetrainConfig {
+    public static final double MAX_DRIVE_SPEED = 10.0;
+    public static final double MAX_TURN_SPEED = 10.0;
+    public static final double SLOWMODE_FACTOR = 0.1;
+
+    public static final PIDConstants DRIVE_PID = new PIDConstants(4.0, 0.0, 1.3);
+
+    public static final PIDConstants TURN_PID = new PIDConstants(2.5, 0.0, 0);
   }
 
   public static void sendNumberToElastic(String name, double num, double places) {
