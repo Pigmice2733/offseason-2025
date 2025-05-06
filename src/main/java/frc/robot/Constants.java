@@ -6,6 +6,7 @@ package frc.robot;
 
 import com.pathplanner.lib.config.PIDConstants;
 
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -31,6 +32,17 @@ public final class Constants {
     public static final PIDConstants DRIVE_PID = new PIDConstants(4.0, 0.0, 1.3);
 
     public static final PIDConstants TURN_PID = new PIDConstants(2.5, 0.0, 0);
+  }
+
+  public class CANConfig {
+    public static final int BALL_SHOOTER_ROTATION = 0;
+    public static final int BALL_SHOOTER_FLY_WHEEL = 0;
+
+  }
+
+  public class PIDConfig {
+    public static final PIDController FLY_WHEEL = new PIDController(0, 0, 0);
+
   }
 
   public static void sendNumberToElastic(String name, double num, double places) {
