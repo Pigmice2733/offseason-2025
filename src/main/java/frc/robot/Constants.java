@@ -45,6 +45,10 @@ public final class Constants {
 
   }
 
+  public class BallShooterConfig {
+    public static final float FLYWHEEL_SPEED = 100 * 100;
+  }
+
   public static void sendNumberToElastic(String name, double num, double places) {
     double newNum = Math.round(num * Math.pow(10, places)) / Math.pow(10, places);
     SmartDashboard.putNumber(name, newNum);

@@ -7,16 +7,17 @@ import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.SparkMaxConfig;
 
 import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.Constants.BallShooterConfig;
 import frc.robot.Constants.CANConfig;
 import frc.robot.Constants.PIDConfig;
 
 public class BallShooter extends SubsystemBase {
   private PIDController rotationPID;
+  @SuppressWarnings("unused")
   private PIDController flyWheelPID;
   private SparkMax rotationMotor;
   private SparkMax flyWheel;
@@ -51,10 +52,14 @@ public class BallShooter extends SubsystemBase {
   }
 
   public Command startFlyWheel() {
-    return new InstantCommand(() -> setFlyWheelSpeed(1), this);
+    return new InstantCommand(() -> setFlyWheelSpeed(BallShooterConfig.FLYWHEEL_SPEED), this);
+  }
+
+  public void rotateTo(float rad) {
+    rotationPID.setSetpoint(rad);
   }
 
   public PIDController getController() {
-    return pidController;
+    return null;
   }
 }
