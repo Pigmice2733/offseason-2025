@@ -5,6 +5,8 @@
 package frc.robot;
 
 import frc.robot.commands.DriveJoysticks;
+import frc.robot.commands.ShootBall;
+import frc.robot.subsystems.BallShooter;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.TemplateSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -24,8 +26,10 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 public class RobotContainer {
   private final TemplateSubsystem m_exampleSubsystem = new TemplateSubsystem();
   private final Drivetrain drivetrain;
+  private final BallShooter ballShooter;
 
-  private final CommandXboxController driver, operator;
+  private final CommandXboxController driver;
+  private final CommandXboxController operator;
   private final Controls controls;
 
   /**
@@ -37,7 +41,9 @@ public class RobotContainer {
     controls = new Controls(driver, operator);
 
     drivetrain = new Drivetrain();
+    ballShooter = new BallShooter();
 
+    defaultCommands();
     // Configure the trigger bindings
     configureBindings();
   }
@@ -59,6 +65,20 @@ public class RobotContainer {
   private void configureBindings() {
     driver.y().onTrue(controls.toggleSlowMode());
     driver.a().onTrue(drivetrain.reset());
+    driver.a().onTrue(new ShootBall(ballShooter));
+  }
+
+  /**
+   * Sets up commands to run for various subsystems when nothing else is
+   * happening.
+   */
+  private void defaultCommands() {
+    drivetrain.setDefaultCommand(new DriveJoysticks(
+        drivetrain,
+        controls::getDriveSpeedX,
+        controls::getDriveSpeedY,
+        controls::getTurnSpeed));
+    ballShooter.setDefaultCommand(ballShooter.stopFlywheel());
   }
 
   /**

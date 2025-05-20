@@ -46,6 +46,10 @@ public class BallShooter extends SubsystemBase {
     flywheel.set(speed);
   }
 
+  public Command startFlywheel() {
+    return new InstantCommand(() -> setFlywheelSpeed(ShooterConfig.FLYWHEEL_SPEED), this);
+  }
+
   public Command stopFlywheel() {
     return new InstantCommand(() -> setFlywheelSpeed(0), this);
   }
@@ -56,5 +60,9 @@ public class BallShooter extends SubsystemBase {
 
   public PIDController getFlywheelController() {
     return flywheelPID;
+  }
+
+  public void rotateTo(float rad) {
+    rotationPID.setSetpoint(rad);
   }
 }
