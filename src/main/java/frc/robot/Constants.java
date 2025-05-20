@@ -36,13 +36,15 @@ public final class Constants {
 
   public class CANConfig {
     public static final int BALL_SHOOTER_ROTATION = 0;
-    public static final int BALL_SHOOTER_FLY_WHEEL = 0;
+    public static final int BALL_SHOOTER_FLYWHEEL = 0;
 
   }
 
-  public class PIDConfig {
-    public static final PIDController FLY_WHEEL = new PIDController(0, 0, 0);
+  public class ShooterConfig {
+    public static final PIDController FLYWHEEL_PID = new PIDController(0, 0, 0);
+    public static final PIDController ROTATION_PID = new PIDController(0, 0, 0);
 
+    public static final double FLYWHEEL_SPEED = 1.0;
   }
 
   public static void sendNumberToElastic(String name, double num, double places) {

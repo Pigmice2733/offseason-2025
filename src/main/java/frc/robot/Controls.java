@@ -70,6 +70,9 @@ public class Controls {
     SmartDashboard.putBoolean("Slowmode", slowmode);
   }
 
+  /**
+   * @return Whether slowmode is active
+   */
   public boolean getSlowmode() {
     return slowmode;
   }
