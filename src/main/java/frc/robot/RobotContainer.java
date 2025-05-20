@@ -5,6 +5,7 @@
 package frc.robot;
 
 import frc.robot.commands.DriveJoysticks;
+import frc.robot.commands.ShootBall;
 import frc.robot.subsystems.BallShooter;
 import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -61,6 +62,7 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
+    driver.a().onTrue(new ShootBall(ballShooter));
   }
 
   /**
