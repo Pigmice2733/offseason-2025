@@ -1,6 +1,7 @@
 package frc.robot;
 
 import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -58,6 +59,17 @@ public class Controls {
   /** Turns on slowmode if slowmode is off, turns it off it is on. */
   public Command toggleSlowMode() {
     return new InstantCommand(() -> setSlowmode(!getSlowmode()));
+  }
+
+  public Command rumbleCommand(double rumble) {
+    return new InstantCommand(() -> {
+      driver.setRumble(RumbleType.kBothRumble, rumble);
+      operator.setRumble(RumbleType.kBothRumble, rumble);
+    });
+  }
+
+  public Command rumbleCommand() {
+    return rumbleCommand(0.599999d);
   }
 
   /**

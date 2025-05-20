@@ -4,8 +4,9 @@
 
 package frc.robot;
 
+import frc.robot.commands.DriveJoysticks;
+import frc.robot.subsystems.BallShooter;
 import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.TemplateSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -22,12 +23,11 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final TemplateSubsystem m_exampleSubsystem = new TemplateSubsystem();
+  private final BallShooter ballShooter;
   private final Drivetrain drivetrain;
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
-  private final CommandXboxController driver;
-  private final CommandXboxController operator;
+  private final CommandXboxController driver, operator;
   private final Controls controls;
 
   /**
@@ -39,7 +39,9 @@ public class RobotContainer {
     controls = new Controls(driver, operator);
 
     drivetrain = new Drivetrain();
+    ballShooter = new BallShooter();
 
+    defaultCommands();
     // Configure the trigger bindings
     configureBindings();
   }
@@ -59,6 +61,15 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
+  }
+
+  /**
+   * REad thE nAme of thE funcTion
+   */
+  private void defaultCommands() {
+    drivetrain.setDefaultCommand(
+        new DriveJoysticks(drivetrain, controls::getDriveSpeedX, controls::getDriveSpeedY, controls::getTurnSpeed));
+    ballShooter.setDefaultCommand(ballShooter.stopFlyWheel());
   }
 
   /**
