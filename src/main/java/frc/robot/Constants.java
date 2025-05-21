@@ -24,9 +24,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public final class Constants {
   public static final double AXIS_THRESHOLD = 0.1;
 
+  public class CANConfig {
+    public static final int SHOOTER_ROTATION = 0;
+    public static final int SHOOTER_FLYWHEEL = 0;
+  }
+
   public static class DrivetrainConfig {
-    public static final double MAX_DRIVE_SPEED = 10.0;
-    public static final double MAX_TURN_SPEED = 10.0;
+    public static final double MAX_DRIVE_SPEED = 10.0; // m/s
+    public static final double MAX_TURN_SPEED = 10.0; // rad/s
     public static final double SLOWMODE_FACTOR = 0.1;
 
     public static final PIDConstants DRIVE_PID = new PIDConstants(4.0, 0.0, 1.3);
@@ -34,21 +39,24 @@ public final class Constants {
     public static final PIDConstants TURN_PID = new PIDConstants(2.5, 0.0, 0);
   }
 
-  public class CANConfig {
-    public static final int BALL_SHOOTER_ROTATION = 0;
-    public static final int BALL_SHOOTER_FLYWHEEL = 0;
-
-  }
-
   public class ShooterConfig {
-    public static final PIDController FLYWHEEL_PID = new PIDController(0, 0, 0);
-    public static final PIDController ROTATION_PID = new PIDController(0, 0, 0);
+    public static final PIDController FLYWHEEL_PID = new PIDController(
+        ShooterConfig.FLYWHEEL_P,
+        ShooterConfig.FLYWHEEL_I,
+        ShooterConfig.FLYWHEEL_D);
+    public static final double FLYWHEEL_P = 0.0;
+    public static final double FLYWHEEL_I = 0.0;
+    public static final double FLYWHEEL_D = 0.0;
+
+    public static final PIDController ROTATION_PID = new PIDController(
+        ShooterConfig.ROTATION_P,
+        ShooterConfig.ROTATION_I,
+        ShooterConfig.ROTATION_D);
+    public static final double ROTATION_P = 0.0;
+    public static final double ROTATION_I = 0.0;
+    public static final double ROTATION_D = 0.0;
 
     public static final double FLYWHEEL_SPEED = 1.0;
-  }
-
-  public class BallShooterConfig {
-    public static final float FLYWHEEL_SPEED = 100 * 100;
   }
 
   public static void sendNumberToElastic(String name, double num, double places) {

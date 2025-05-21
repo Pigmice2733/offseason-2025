@@ -24,7 +24,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  * subsystems, commands, and trigger mappings) should be declared here.
  */
 public class RobotContainer {
-  private final TemplateSubsystem m_exampleSubsystem = new TemplateSubsystem();
+  private final TemplateSubsystem m_exampleSubsystem;
   private final Drivetrain drivetrain;
   private final BallShooter ballShooter;
 
@@ -40,6 +40,7 @@ public class RobotContainer {
     operator = new CommandXboxController(1);
     controls = new Controls(driver, operator);
 
+    m_exampleSubsystem = new TemplateSubsystem();
     drivetrain = new Drivetrain();
     ballShooter = new BallShooter();
 
